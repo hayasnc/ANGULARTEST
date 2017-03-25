@@ -1,0 +1,25 @@
+<div class="content">
+    <app-heading id="test"></app-heading>
+    <p> {{myCntrl.texxt}}</p>
+</div>
+<div>
+    <form name="myForm" class="content">
+        <input id="searchbox"  class="box" type="text" name="emailid" ng-model="myCntrl.texxt" placeholder="Search for..">
+        <br>
+        <button type="button" class="btn btn-primary">Search</button>
+        <table>
+            <tr>
+                <th ng-click="orderByValue('Country')">Country</th>
+                <th ng-click="orderByValue('name')">Name</th>
+            </tr>
+            <tr ng-repeat="list in places | orderBy:orderValue | filter : texxt">
+                <td> {{myCntrl.list.Country}}
+                </td>
+                <td> {{myCntrl.list.name}}
+                </td>
+            </tr>
+        </table>
+        <!-- <li ng-repeat="place in places | filter : texxt">{{place}}</li> -->
+        <span ng-show="{{myForm.emailid.$error.email}}">Invaid address</span>
+    </form>
+</div>

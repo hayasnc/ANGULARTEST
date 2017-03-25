@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <title>HAYAS </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+    <script src="appHeading.js"></script>
+    <script src="myController.js"></script>
+    <script src="myDateService.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script>
+    $(document).ready(function() {
+        $('#test').click(function() {
+            $('#searchbox').toggle();
+        });
+    });
+    </script>
+</head>
+
+<body ng-app="myApp" ng-controller="myController">
+    <div class="content">
+        <app-heading id="test"></app-heading>
+        <p> {{texxt}}</p>
+    </div>
+    <div>
+        <form name="myForm" class="content">
+            <input id="searchbox"  class="box" type="text" name="emailid" ng-model="texxt" placeholder="Search for..">
+            <br>
+            <button type="button" class="btn btn-primary">Search</button>
+            <table>
+                <tr>
+                    <th ng-click="orderByValue('Country')">Country</th>
+                    <th ng-click="orderByValue('name')">Name</th>
+                </tr>
+                <tr ng-repeat="list in places | orderBy:orderValue | filter : texxt">
+                    <td> {{list.Country}}
+                    </td>
+                    <td> {{list.name}}
+                    </td>
+                </tr>
+            </table>
+            <!-- <li ng-repeat="place in places | filter : texxt">{{place}}</li> -->
+            <span ng-show="{{myForm.emailid.$error.email}}">Invaid address</span>
+        </form>
+    </div>
+</body>
+
+</html>
